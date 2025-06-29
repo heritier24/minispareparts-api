@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Services extends Model
 {
     use HasFactory;
+
+    protected $table = 'services';
+
+    protected $fillable = ['vehicle_id', 'status', 'assignedMechanic', 'createdAt'];
+
+       public function vehicle()
+       {
+           return $this->belongsTo(Vehicles::class);
+       }
 }
