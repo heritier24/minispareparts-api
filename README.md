@@ -1,66 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Mini Spare-Part Management System Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is the backend for the Mini Spare-Part Management System, a web application for managing vehicle repairs, services, and spare parts in an auto repair shop. Built with Laravel 11 and MySQL, it uses JWT (JSON Web Tokens) for authentication and follows a clean architecture with controllers, services, and form requests. The backend supports three user roles (Manager, Receptionist, Mechanic) and provides RESTful API endpoints for managing users, vehicles, services, and parts. It integrates with a Vue.js frontend (not included in this repository).
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Authentication: JWT-based login/logout with role-based access control.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## User Roles:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Manager: View dashboard, manage parts inventory.
 
-## Learning Laravel
+* Receptionist: Register vehicles, manage service lists.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Mechanic: View and update service queue.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* Data Management: CRUD operations for vehicles, services, and spareparts.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Validation: Form requests for input validation and authorization.
 
-## Laravel Sponsors
+* SOLID Principles: Single Responsibility enforced through controllers (HTTP handling), services (business logic), and form requests (validation).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Prerequisites
 
-### Premium Partners
+## To run this backend locally, ensure you have the following installed:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+``PHP >= 8.1``
 
-## Contributing
+## Composer (for PHP dependency management)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+``MySQL >= 5.7``
 
-## Code of Conduct
+A MySQL client (e.g., phpMyAdmin, MySQL Workbench) for database setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Installation
 
-## Security Vulnerabilities
+Follow these steps to set up the backend on your local computer.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+##  Clone the Repository
 
-## License
+``git clone https://github.com/heritier24/minispareparts-api.git``
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+`` cd minispareparts-api ``
+
+## Install Dependencies
+
+Install PHP dependencies using Composer:
+
+``composer install``
+
+## Configure Environment
+
+Copy the .env.example file to .env:
+
+`` cp .env.example .env ``
+
+
+
+Update .env with your MySQL database credentials:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mini_spareparts
+DB_USERNAME=root
+DB_PASSWORD=
+
+## Replace your_username and your_password with your MySQL credentials.
+
+Set Up MySQL Database
+
+## Run migrations to create tables:
+
+`` php artisan migrate``
+
+## Seed the database with initial data (users, vehicles, services, parts):
+
+`` php artisan db:seed``
+
+## Configure JWT Authentication
+
+Install the JWT-Auth package:
+
+`` composer require tymon/jwt-auth ``
+
+## Publish the JWT configuration:
+
+``php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider" ``
+
+## Generate a JWT secret:
+
+`` php artisan jwt:secret ``
+
+This adds a JWT_SECRET key to your .env file.
+
+## Run the Application
+
+## Start development server:
+
+`` php artisan serve ``
+
