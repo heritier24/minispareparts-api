@@ -13,8 +13,15 @@ class Services extends Model
 
     protected $fillable = ['vehicle_id', 'status', 'assignedMechanic', 'createdAt'];
 
-       public function vehicle()
-       {
-           return $this->belongsTo(Vehicles::class);
-       }
+    protected $casts = [
+        'vehicle_id' => 'integer',
+        'createdAt' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicles::class, 'vehicle_id');
+    }
 }

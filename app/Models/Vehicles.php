@@ -11,10 +11,11 @@ class Vehicles extends Model
 
     protected $table = 'vehicles';
 
-    protected $fillable = ['vehicle_id', 'status', 'assignedMechanic', 'createdAt'];
+    protected $fillable = ['make', 'model', 'year', 'licensePlate'];
 
-    public function vehicle()
-    {
-        return $this->belongsTo(Vehicles::class);
-    }
+    protected $casts = [
+        'year' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }
